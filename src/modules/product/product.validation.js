@@ -1,9 +1,9 @@
 import joi from 'joi'
 import { generalFields } from '../../middleware/validation.js'
 //==============
-export const headers = joi.object({
-    authorization: generalFields.headers
-}).required()
+// export const headers = joi.object({
+//     authorization: generalFields.headers
+// }).required()
 //============== Create Product ==============
 export const createProduct = joi.object({
     name: joi.string().min(2).max(50).required(),

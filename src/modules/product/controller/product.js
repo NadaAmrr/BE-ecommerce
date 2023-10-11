@@ -70,7 +70,7 @@ export const createProduct = async (req, res, next) => {
     .json({ message: "Done", product, QRCode: req.body.QRCode });
 };
 //============== Products ==============
-export const products = asyncHandler(async (req, res, next) => {
+export const products = async (req, res, next) => {
   const apiFeature = new ApiFeatures(productModel.find().populate([{path:"review"}]), req.query).paginate().filter().search().select()
   const products = await apiFeature.mongooseQuery
   for (let i = 0; i < products.length; i++) {
@@ -84,9 +84,9 @@ export const products = asyncHandler(async (req, res, next) => {
 
   }
   return res.status(200).json({ message: "Done", products })
-})
+}
 //=============== Update products
-export const updateProduct = asyncHandler(async (req, res, next) => {
+export const updateProduct = async (req, res, next) => {
   const { productId } = req.params;
   const product = await productModel.findById(productId)
   if (!product) {
@@ -127,4 +127,4 @@ export const updateProduct = asyncHandler(async (req, res, next) => {
 
   await productModel.updateOne({ _id: productId }, req.body )
   return res.status(200).json({ message: "Done" })
-})
+}

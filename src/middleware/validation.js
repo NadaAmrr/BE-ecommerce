@@ -33,7 +33,6 @@ export const generalFields = {
 };
 
 export const validation = (schema) => {
-  console.log("herere");
   return (req, res, next) => {
     const inputsData = { ...req.body, ...req.query, ...req.params };
     if (req.file || req.files) {
